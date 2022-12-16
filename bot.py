@@ -19,7 +19,6 @@ def page(c):
     id1 = soup.select('span.lister-item-index')
 
     for a, b, c in zip(movies, runtime, id1):
-        # movies_list[c.get_text()[:-1]] = (a.get_text(), b.get_text()[:-4])
         movies_list.append((c.get_text()[:-1], a.get_text(), b.get_text()))
 
     next1 = soup.select('a.lister-page-next')[0]
@@ -30,7 +29,7 @@ cur = 0
 for i in next_url:
     if cur <= 170:
         page(i)
-        print(cur)
+        print('Scraped page no. ', cur)
         cur += 1
     else:
         movies_list.sort(key=lambda x: float(x[2][:-4]), reverse=True)
